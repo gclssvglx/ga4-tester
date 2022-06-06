@@ -1,0 +1,11 @@
+accordions:
+  class: govuk-accordion__section-heading
+  tag: h3
+  urls:
+    - https://www.integration.publishing.service.gov.uk/coronavirus
+tabs:
+  class: govuk-tabs__tab
+  tag: a
+  urls:
+    - https://www.integration.publishing.service.gov.uk/renew-driving-licence
+    - https://www.integration.publishing.service.gov.uk/bank-holidays
