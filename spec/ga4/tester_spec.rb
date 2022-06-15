@@ -1,11 +1,5 @@
-RSpec.describe Ga4::Tester do
-  context "testing the gem" do
-    it "has a version number" do
-      expect(Ga4::Tester::VERSION).not_to be nil
-    end
-  end
-
-  context "GA4 testing" do
+RSpec.describe "Tester" do
+  context "Test" do
     before :all do
       @interactions = YAML.load_file("interactions.yml")
     end
@@ -18,11 +12,11 @@ RSpec.describe Ga4::Tester do
           tag = @interactions['tabs']['tag']
           klass = @interactions['tabs']['class']
 
-          find_all(:xpath, "//#{tag}[@class='#{klass}']").each do |tab|
-            event_name = tab["data-gtm-event-name"]
-            data_attributes = JSON.parse(tab["data-gtm-attributes"])
+          find_all(:xpath, "//#{tag}[@class='#{klass}']").each do |link|
+            event_name = link["data-gtm-event-name"]
+            data_attributes = JSON.parse(link["data-gtm-attributes"])
 
-            tab.click
+            link.click
 
             events = page.evaluate_script("dataLayer")
             unless events.nil?
@@ -42,12 +36,12 @@ RSpec.describe Ga4::Tester do
           tag = @interactions['accordions']['tag']
           klass = @interactions['accordions']['class']
 
-          find_all(:xpath, "//#{tag}[@class='#{klass}']").each do |tab|
-            event_name = tab["data-gtm-event-name"]
-            data_attributes = JSON.parse(tab["data-gtm-attributes"])
+          find_all(:xpath, "//#{tag}[@class='#{klass}']").each do |link|
+            event_name = link["data-gtm-event-name"]
+            data_attributes = JSON.parse(link["data-gtm-attributes"])
 
             %w[opened closed].each do |state|
-              tab.click
+              link.click
 
               events = page.evaluate_script("dataLayer")
               unless events.nil?

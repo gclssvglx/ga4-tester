@@ -9,3 +9,8 @@ tabs:
   urls:
     - https://www.integration.publishing.service.gov.uk/renew-driving-licence
     - https://www.integration.publishing.service.gov.uk/bank-holidays
+mystuff:
+  class: event-link-click
+  tag: a
+  urls:
+    - https://bright-tartufo-3c9320.netlify.app/ga4

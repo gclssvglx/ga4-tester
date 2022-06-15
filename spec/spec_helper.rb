@@ -42,3 +42,16 @@ def build_event(event_name, id, data_attributes, state)
     }
   }
 end
+
+def fake(interactions)
+  interactions["urls"].each do |url|
+    puts "Generating data for: #{url}"
+    visit url
+
+    find_all(:xpath, "//#{interactions['tag']}[@class='#{interactions['class']}']").each do |link|
+      event_count = page.evaluate_script("dataLayer").length
+      link.click
+      expect(page.evaluate_script("dataLayer").length).to eq(event_count + 1)
+    end
+  end
+end
